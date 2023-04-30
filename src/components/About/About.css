@@ -1,0 +1,37 @@
+.about {
+  padding: 80px 56px 80px 104px;
+  background-color: #fff;
+  display: flex;
+}
+
+.about__avatar {
+  width: 464px;
+  height: 464px;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.about__description {
+  width: 600px;
+  margin-top: 51px;
+  margin-left: 56px;
+}
+
+.about__title {
+  margin: 0;
+  font-size: 40px;
+  font-family: "Roboto Slab", "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
+  line-height: 46px;
+  color: #1a1b22;
+}
+
+.about__text {
+  margin: 24px 0 0;
+
+  font-size: 18px;
+  font-family: "Roboto", "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1a1b22;
+}
