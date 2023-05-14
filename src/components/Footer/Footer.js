@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import githubIcon from "../../images/Github_Logo.svg";
 import fbIcon from "../../images/FB_Logo.svg";
-import "./Footer.css";
 
 function Footer() {
   return (
@@ -14,11 +12,28 @@ function Footer() {
         <a href="https://practicum.com" className="footer__menu-link">
           Home
         </a>
-        <a href="https://practicum.com" className="footer__menu-link">
+        <a
+          href="https://practicum.com"
+          rel="noreferrer"
+          target="_blank"
+          className="footer__menu-link"
+        >
           Practicum
         </a>
-        <img src={githubIcon} alt="GitHub" className="footer__menu-social" />
-        <img src={fbIcon} alt="FaceBook" className="footer__menu-social" />
+        <a
+          href="https://github.com/jkeller975"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img src={githubIcon} alt="GitHub" className="footer__menu-social" />
+        </a>
+        <a
+          href="https://www.facebook.com/josh.keller.3994"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img src={fbIcon} alt="FaceBook" className="footer__menu-social" />
+        </a>
       </nav>
     </footer>
   );
