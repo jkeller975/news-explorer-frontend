@@ -30,3 +30,42 @@
 .footer__menu-social {
   padding-right: 28px;
 }
+
+@media screen and (max-width: 900px) {
+  .footer {
+    padding: 0 0 0 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .footer {
+    flex-direction: column-reverse;
+    margin: 20px 17px;
+    padding: 0;
+  }
+
+  .footer__text {
+    margin: 10px auto 0;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__menu-link {
+    padding-bottom: 30px;
+  }
+
+  .footer__logos {
+    display: flex;
+    align-items: flex-start;
+    height: 108px;
+  }
+
+  .footer__menu {
+    justify-content: space-between;
+  }
+}

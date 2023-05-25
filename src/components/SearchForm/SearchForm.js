@@ -64,14 +64,22 @@ function SearchForm(props) {
           props.setResultCardLength(articles.length);
           props.setIsLoading(false);
           props.setNewsCardListOpen(true);
+          console.log(articles);
+          if (articles.length > 3) {
+            props.setShowMore(true);
+          } else {
+            props.setShowMore(false);
+          }
+
           return;
         } else {
           throw new Error("Unhandled request error");
         }
       })
 
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        props.setIsLoading(false);
+        props.setSearchError(true);
       });
     return;
   }

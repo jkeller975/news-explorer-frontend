@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useHistory, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -29,11 +29,11 @@ function App() {
     setFormPopup(true);
   }
 
-  function registerFail() {
-    setRegisterPopup(true);
-    setRegisterSuccessPopup(false);
-    setFormPopup(true);
-  }
+  // function registerFail() {
+  //   setRegisterPopup(true);
+  //   setRegisterSuccessPopup(false);
+  //   setFormPopup(true);
+  // }
 
   function searchHandler(keyword) {
     return newsApi.searchArticles(keyword);
@@ -77,7 +77,7 @@ function App() {
             <Footer />
           </ProtectedRoute>
         </Switch>
-        {/* <Redirect from="*" to="/" /> */}
+
         {isFormPopupOpen ? (
           <Popup
             setPopup={setPopup}
@@ -96,6 +96,31 @@ function App() {
               isRegisterSuccess={isRegisterSuccess}
               setRegisterSuccess={setRegisterSuccess}
             />
+          </Popup>
+        ) : (
+          ""
+        )}
+        {isRegisterSuccessPopupOpen ? (
+          <Popup
+            setPopup={setPopup}
+            setFormPopup={setFormPopup}
+            isPopupOpen={isPopupOpen}
+          >
+            {isRegisterSuccess ? (
+              <div>
+                <h2 className="popup__title">
+                  Registration completed successfully!
+                </h2>
+                <button
+                  className="popup__form-text popup__form-button"
+                  onClick={registerSuccess}
+                >
+                  Sign in
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
           </Popup>
         ) : (
           ""

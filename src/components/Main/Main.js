@@ -3,15 +3,18 @@ import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import Preloader from "../Preloader/Preloader";
+import NotFound from "../NotFound/NotFound";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function Main(props) {
   const [isLoading, setIsLoading] = React.useState(false);
-  // const [hasResults, setHasResults] = React.useState(true); //change to false
   const [searchKeyword, setSearchKeyword] = React.useState([]);
   const [isNewsCardListOpen, setNewsCardListOpen] = React.useState(false); //change to false
   const [visibleCards, setVisibleCards] = React.useState(0);
   const [cards, setCards] = React.useState();
   const [resultCardLength, setResultCardLength] = React.useState(0);
+  const [showMore, setShowMore] = React.useState();
+  const [searchError, setSearchError] = React.useState(false);
 
   function handleSearchSubmit(keyword) {
     setIsLoading(true);
@@ -31,9 +34,14 @@ function Main(props) {
         cards={cards}
         setResultCardLength={setResultCardLength}
         setIsLoading={setIsLoading}
+        resultCardLength={resultCardLength}
+        setShowMore={setShowMore}
+        setSearchError={setSearchError}
       />
       {isLoading && <Preloader />}
-      {isNewsCardListOpen && (
+      {resultCardLength === 0 && isNewsCardListOpen && <NotFound />}
+      {searchError && <ErrorMessage />}
+      {isNewsCardListOpen && resultCardLength > 0 && (
         <NewsCardList
           cards={cards}
           isSavedNews={false}
@@ -41,6 +49,8 @@ function Main(props) {
           resultCardLength={resultCardLength}
           visibleCards={visibleCards}
           setVisibleCards={setVisibleCards}
+          setShowMore={setShowMore}
+          showMore={showMore}
         />
       )}
       <About />

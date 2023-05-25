@@ -104,3 +104,18 @@
   margin: 0 0 0 auto;
   padding-left: 19px;
 }
+
+@media screen and (max-width: 850px) {
+  .header__logo {
+    margin-left: 40px;
+  }
+
+  .header__signin {
+    margin: auto 40px auto 0;
+    width: 150px;
+  }
+
+  .header__logout {
+    margin: auto 40px auto 0;
+  }
+}

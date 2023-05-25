@@ -87,11 +87,6 @@ const PopupWithForm = (props) => {
     props.setRegisterPopup(!props.isRegisterPopupOpen);
   }
 
-  function handleSignin() {
-    props.setLoggedIn(true);
-    closePopup();
-  }
-
   function handleRegister() {
     if (props.isRegisterPopupOpen) {
       return (

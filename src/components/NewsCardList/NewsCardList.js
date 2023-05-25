@@ -2,27 +2,20 @@ import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
 
 const NewsCardList = (props) => {
-  const [showMore, setShowMore] = React.useState(true);
-
   function incrementDisplayedCards() {
     if (props.cards.length > props.visibleCards) {
-      setShowMore(true);
+      props.setShowMore(true);
       const newVisibleCards = props.visibleCards + 3;
       props.setVisibleCards(newVisibleCards);
-      if (newVisibleCards > props.cards.length) {
-        setShowMore(false);
-      }
-      return;
-    } else {
-      setShowMore(false);
-      return;
+      console.log(newVisibleCards, props.cards.length);
+    }
+    if (props.visibleCards + 3 > props.cards.length) {
+      props.setShowMore(false);
     }
   }
 
   function renderCardList() {
     if (props.cards) {
-      if (props.resultCardLength > props.visibleCards) {
-      }
       return props.cards
         .slice(0, props.visibleCards)
         .map((card, i) => (
@@ -62,7 +55,7 @@ const NewsCardList = (props) => {
           </div>
         )}
 
-        {!props.isSavedNews && showMore ? (
+        {!props.isSavedNews && props.showMore ? (
           <button
             className="news-card-list__show-more"
             onClick={incrementDisplayedCards}

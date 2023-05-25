@@ -39,3 +39,13 @@
 .navigation__link:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 850px) {
+  .navigation {
+    padding: 0;
+    margin-right: 24px;
+  }
+  .navigation__link {
+    padding: 0 24px;
+  }
+}
