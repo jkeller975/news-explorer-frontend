@@ -1,9 +1,14 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
+import MenuWhiteIcon from "../../images/menu_white.svg";
+import MenuBlackIcon from "../../images/menu_black.svg";
+import MenuCloseIcon from "../../images/menu_close.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header(props) {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const [menuIcon, setMenuIcon] = React.useState();
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
   function toggleNavStatus() {
     if (props.isFormPopupOpen) {
@@ -32,10 +37,30 @@ function Header(props) {
     setIsNavOpen(false);
   }
 
+  function toggleMobilePopup() {
+    props.setPopup(true);
+    props.setFormPopup(true);
+  }
+
   function handleSignout() {
     props.setLoggedIn(false);
     setIsNavOpen(false);
   }
+
+  function menuClick() {
+    setMenuOpen(!menuOpen);
+    toggleMobilePopup();
+  }
+
+  React.useEffect(() => {
+    if (!menuOpen && props.isSavedNews) {
+      setMenuIcon(MenuBlackIcon);
+    } else if (!menuOpen && !props.isSavedNews) {
+      setMenuIcon(MenuWhiteIcon);
+    } else if (menuOpen) {
+      setMenuIcon(MenuCloseIcon);
+    }
+  }, [props.isSavedNews, menuOpen]);
 
   return (
     <header className={`header ${navigationLink("header_dark")}`}>
@@ -49,6 +74,7 @@ function Header(props) {
           isNavOpen={props.isNavOpen}
           navigationLink={navigationLink}
         />
+        <img src={menuIcon} className="header__menu" onClick={menuClick}></img>
         {props.isLoggedIn ? (
           <button
             onClick={handleSignout}

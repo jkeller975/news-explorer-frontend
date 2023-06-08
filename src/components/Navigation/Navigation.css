@@ -49,3 +49,9 @@
     padding: 0 24px;
   }
 }
+
+@media screen and (max-width: 650px) {
+  .navigation {
+    display: none;
+  }
+}
