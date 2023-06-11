@@ -7,7 +7,6 @@ const NewsCardList = (props) => {
       props.setShowMore(true);
       const newVisibleCards = props.visibleCards + 3;
       props.setVisibleCards(newVisibleCards);
-      console.log(newVisibleCards, props.cards.length);
     }
     if (props.visibleCards + 3 > props.cards.length) {
       props.setShowMore(false);

@@ -125,7 +125,8 @@
 
 @media screen and (max-width: 650px) {
   .header__logo {
-    margin-left: 40px;
+    margin-left: 16px;
+    font-size: 16px;
   }
 
   .header__logout {
@@ -134,6 +135,10 @@
 
   .header__menu {
     display: block;
-    margin-right: 24px;
+    margin-right: 16px;
+  }
+
+  .header__signin {
+    display: none;
   }
 }

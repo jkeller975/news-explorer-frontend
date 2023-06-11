@@ -64,7 +64,7 @@ function SearchForm(props) {
           props.setResultCardLength(articles.length);
           props.setIsLoading(false);
           props.setNewsCardListOpen(true);
-          console.log(articles);
+
           if (articles.length > 3) {
             props.setShowMore(true);
           } else {

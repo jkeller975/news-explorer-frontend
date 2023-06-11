@@ -9,7 +9,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 function Main(props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [searchKeyword, setSearchKeyword] = React.useState([]);
-  const [isNewsCardListOpen, setNewsCardListOpen] = React.useState(false); //change to false
+  const [isNewsCardListOpen, setNewsCardListOpen] = React.useState(false);
   const [visibleCards, setVisibleCards] = React.useState(0);
   const [cards, setCards] = React.useState();
   const [resultCardLength, setResultCardLength] = React.useState(0);

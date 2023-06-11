@@ -5,6 +5,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Popup from "../Popup/Popup";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import MobilePopup from "../MobilePopup/MobilePopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
@@ -18,10 +19,12 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(true);
   const [isPopupOpen, setPopup] = React.useState(false);
   const [isFormPopupOpen, setFormPopup] = React.useState(false);
+  const [isMobilePopupOpen, setMobilePopup] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopup] = React.useState(false);
   const [isRegisterSuccessPopupOpen, setRegisterSuccessPopup] =
     React.useState(false);
   const [isRegisterSuccess, setRegisterSuccess] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   function registerSuccess() {
     setRegisterPopup(false);
@@ -29,11 +32,11 @@ function App() {
     setFormPopup(true);
   }
 
-  // function registerFail() {
-  //   setRegisterPopup(true);
-  //   setRegisterSuccessPopup(false);
-  //   setFormPopup(true);
-  // }
+  function registerFail() {
+    setRegisterPopup(true);
+    setRegisterSuccessPopup(false);
+    setFormPopup(true);
+  }
 
   function searchHandler(keyword) {
     return newsApi.searchArticles(keyword);
@@ -52,6 +55,10 @@ function App() {
               setRegisterPopup={setRegisterPopup}
               setPopup={setPopup}
               setFormPopup={setFormPopup}
+              isMobilePopupOpen={isMobilePopupOpen}
+              setMobilePopup={setMobilePopup}
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
               isSavedNews={false}
             />
             <Main isLoggedIn={isLoggedIn} searchHandler={searchHandler} />
@@ -66,14 +73,14 @@ function App() {
               setRegisterPopup={setRegisterPopup}
               setPopup={setPopup}
               setFormPopup={setFormPopup}
+              isMobilePopupOpen={isMobilePopupOpen}
+              setMobilePopup={setMobilePopup}
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
               isSavedNews={true}
             />
             <SavedNewsHeader isLoggedIn={isLoggedIn} cards={cards} />
-            <SavedNews
-              isLoggedIn={isLoggedIn}
-              cards={cards}
-              // handleSignout={handleSignout}
-            />
+            <SavedNews isLoggedIn={isLoggedIn} cards={cards} />
             <Footer />
           </ProtectedRoute>
         </Switch>
@@ -122,6 +129,23 @@ function App() {
               ""
             )}
           </Popup>
+        ) : (
+          ""
+        )}
+        {isMobilePopupOpen ? (
+          <MobilePopup
+            setPopup={setPopup}
+            setFormPopup={setFormPopup}
+            isPopupOpen={isPopupOpen}
+            isMobilePopupOpen={isMobilePopupOpen}
+            setMobilePopup={setMobilePopup}
+            isLoggedIn={isLoggedIn}
+            setLoggedIn={setLoggedIn}
+            isRegisterSuccess={isRegisterSuccess}
+            setRegisterSuccess={setRegisterSuccess}
+            setMenuOpen={setMenuOpen}
+            menuOpen={menuOpen}
+          />
         ) : (
           ""
         )}

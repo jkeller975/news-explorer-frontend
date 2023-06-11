@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-// import validator from "validator";
+import validator from "validator";
 
 const PopupWithForm = (props) => {
   const [errors, setErrors] = useState({});
@@ -25,58 +25,53 @@ const PopupWithForm = (props) => {
     closePopup();
   }
 
-  // function validateInputs(email, password, username = null) {
-  //   const errors = {};
+  function validateInputs(email, password, username = null) {
+    const errors = {};
 
-  //   if (!email || !validator.isEmail(email)) {
-  //     errors.email = "Invalid email address";
-  //   }
+    if (!email || !validator.isEmail(email)) {
+      errors.email = "Invalid email address";
+    }
 
-  //   if (!password) {
-  //     errors.password = "Password is a required field";
-  //   } else if (!validator.isStrongPassword(password, { minSymbols: 0 })) {
-  //     errors.password =
-  //       "Password must be at least 8 characters and contain a number and a capital letter.";
-  //   }
+    if (!password) {
+      errors.password = "Password is a required field";
+    }
 
-  //   if (username === null) {
-  //   } else if (!username) {
-  //     errors.username = "Username is a required field.";
-  //   } else if (username.length < 5) {
-  //     errors.username = "Username must be at least 6 characters";
-  //   }
+    if (username === null) {
+    } else if (!username) {
+      errors.username = "Username is a required field.";
+    }
 
-  //   return errors;
-  // }
+    return errors;
+  }
 
-  // function registerFormOnChange() {
-  //   const validatedInputs = validateInputs(
-  //     emailRef.current.value,
-  //     passwordRef.current.value,
-  //     nameRef.current.value
-  //   );
-  //   if (Object.keys(validatedInputs).length === 0) {
-  //     setErrors(false);
-  //     return;
-  //   }
+  function registerFormChange() {
+    const validatedInputs = validateInputs(
+      emailRef.current.value,
+      passwordRef.current.value,
+      nameRef.current.value
+    );
+    if (Object.keys(validatedInputs).length === 0) {
+      setErrors(false);
+      return;
+    }
 
-  //   setErrors(validatedInputs);
-  //   return;
-  // }
+    setErrors(validatedInputs);
+    return;
+  }
 
-  // function signinFormOnChange() {
-  //   const validatedInputs = validateInputs(
-  //     emailRef.current.value,
-  //     passwordRef.current.value
-  //   );
-  //   if (Object.keys(validatedInputs).length === 0) {
-  //     setErrors(false);
-  //     return;
-  //   }
+  function signinFormChange() {
+    const validatedInputs = validateInputs(
+      emailRef.current.value,
+      passwordRef.current.value
+    );
+    if (Object.keys(validatedInputs).length === 0) {
+      setErrors(false);
+      return;
+    }
 
-  //   setErrors(validatedInputs);
-  //   return;
-  // }
+    setErrors(validatedInputs);
+    return;
+  }
 
   function closePopup() {
     props.setPopup(false);
@@ -93,7 +88,7 @@ const PopupWithForm = (props) => {
         <>
           <h2 className="popup__title">Sign up</h2>
           <form
-            // onChange={() => registerFormOnChange()}
+            onChange={() => registerFormChange()}
             onSubmit={handleRegisterSubmit}
             className="popup__form popup__form_register form"
           >
@@ -172,7 +167,7 @@ const PopupWithForm = (props) => {
         <>
           <h2 className="popup__title">Sign in</h2>
           <form
-            // onChange={signinFormOnChange}
+            onChange={signinFormChange}
             onSubmit={handleSigninSubmit}
             className="popup__form popup__form_signin form"
           >
