@@ -14,8 +14,8 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { allCards } from "../data/data";
 
 function App() {
-  const [cards, setCards] = React.useState(allCards);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [cards] = React.useState(allCards);
+  const [currentUser] = React.useState({});
   const [isLoggedIn, setLoggedIn] = React.useState(true);
   const [isPopupOpen, setPopup] = React.useState(false);
   const [isFormPopupOpen, setFormPopup] = React.useState(false);
@@ -32,11 +32,11 @@ function App() {
     setFormPopup(true);
   }
 
-  function registerFail() {
-    setRegisterPopup(true);
-    setRegisterSuccessPopup(false);
-    setFormPopup(true);
-  }
+  // function registerFail() {
+  //   setRegisterPopup(true);
+  //   setRegisterSuccessPopup(false);
+  //   setFormPopup(true);
+  // }
 
   function searchHandler(keyword) {
     return newsApi.searchArticles(keyword);

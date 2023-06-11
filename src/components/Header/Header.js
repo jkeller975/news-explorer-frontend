@@ -10,15 +10,6 @@ function Header(props) {
   const [menuIcon, setMenuIcon] = React.useState();
 
   const currentUser = React.useContext(CurrentUserContext);
-  function toggleNavStatus() {
-    if (props.isFormPopupOpen) {
-      setIsNavOpen(false);
-      props.setPopup(false);
-      props.setFormPopup(false);
-    } else {
-      setIsNavOpen(!isNavOpen);
-    }
-  }
 
   function navigationLink(darkClass) {
     if (props.isSavedNews && !isNavOpen) {
