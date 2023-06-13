@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 
-.navigation__link-dark {
+.navigation__link_theme_dark {
   color: #1a1b22;
 }
 
@@ -31,7 +31,7 @@
   border-bottom: #fff 3px solid;
 }
 
-.navigation__link_active-dark {
+.navigation__link_active_theme_dark {
   padding-bottom: 11px;
   border-bottom: #1a1b22 3px solid;
 }
@@ -51,6 +51,10 @@
   .navigation__link_active {
     padding-bottom: 11px;
     border-bottom: #fff 3px solid;
+  }
+
+  .navigation__link_active_theme_dark {
+    padding-bottom: 11px;
   }
 }
 

@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-.search__container {
+.search-container {
   background-image: url(../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg);
   background-repeat: no-repeat;
   height: 576px;
@@ -95,7 +95,7 @@ body {
 }
 
 @media screen and (max-width: 850px) {
-  .search__container {
+  .search-container {
     background-position: center, center;
     height: 400px;
   }
@@ -124,7 +124,7 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-  .search__container {
+  .search-container {
     height: 536px;
   }
   .search__content {

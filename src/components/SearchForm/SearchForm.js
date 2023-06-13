@@ -85,7 +85,7 @@ function SearchForm(props) {
   }
 
   return (
-    <section className="search__container">
+    <section className="search-container">
       <div className="search__content">
         <h2 className="search__title">What's going on in the world?</h2>
         <p className="search__text">

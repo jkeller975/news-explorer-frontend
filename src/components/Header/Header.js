@@ -54,8 +54,10 @@ function Header(props) {
   }, [props.isSavedNews, props.menuOpen]);
 
   return (
-    <header className={`header ${navigationLink("header-dark")}`}>
-      <p className={`header__logo ${navigationLink("header__logo-dark")}`}>
+    <header className={`header ${navigationLink("header_theme_dark")}`}>
+      <p
+        className={`header__logo ${navigationLink("header__logo_theme_dark")}`}
+      >
         NewsExplorer
       </p>
       <div className="header__mobile-nav">
@@ -75,7 +77,7 @@ function Header(props) {
           <button
             onClick={handleSignout}
             className={`header__logout ${navigationLink(
-              "header__logout-dark"
+              "header__logout_theme_dark"
             )}`}
           >
             {`${(currentUser.name = "Josh")}`}

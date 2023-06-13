@@ -8,9 +8,9 @@ function Navigation(props) {
         <NavLink
           to="/saved-news"
           exact={true}
-          activeClassName="navigation__link_active-dark"
+          activeClassName="navigation__link_active_theme_dark"
           className={`navigation__link ${props.navigationLink(
-            "navigation__link-dark"
+            "navigation__link_theme_dark"
           )}`}
         >
           Saved articles
@@ -27,7 +27,7 @@ function Navigation(props) {
         exact={true}
         activeClassName="navigation__link_active"
         className={`navigation__link ${props.navigationLink(
-          "navigation__link-dark"
+          "navigation__link_theme_dark"
         )}`}
       >
         Home
