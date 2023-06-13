@@ -10,7 +10,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.header_dark {
+.header-dark {
   border-bottom: 1px solid #d1d2d6;
 }
 
@@ -23,7 +23,7 @@
   margin: auto 0 auto 104px;
 }
 
-.header__logo_dark {
+.header__logo-dark {
   color: #1a1b22;
 }
 
@@ -87,12 +87,12 @@
   padding-left: 19px;
 }
 
-.header__logout_dark {
+.header__logout-dark {
   color: #1a1b22;
   border: 1px solid #1a1b22;
 }
 
-.header__logout_dark::after {
+.header__logout-dark::after {
   content: "";
   mask-repeat: no-repeat;
   mask-position: right;

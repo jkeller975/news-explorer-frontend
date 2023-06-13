@@ -169,7 +169,7 @@ const PopupWithForm = (props) => {
           <form
             onChange={signinFormChange}
             onSubmit={handleSigninSubmit}
-            className="popup__form popup__form_signin form"
+            className="popup__form form"
           >
             <label className="form__label" htmlFor="register-email">
               Email

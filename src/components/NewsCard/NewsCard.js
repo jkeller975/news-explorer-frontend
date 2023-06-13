@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Photo from "../../images/no_photo_found.jpg";
 
 const NewsCard = (props) => {
   const [isSaved, seIsSaved] = useState(false);
@@ -43,19 +44,28 @@ const NewsCard = (props) => {
     }
   }
 
+  function missingPhoto() {
+    if (props.card.urlToImage === null) {
+      return Photo;
+    } else {
+      return props.card.urlToImage;
+    }
+  }
+
   return (
     <li className="news-card">
       {toggleDeleteSave()}
       {keywords()}
       <img
         className="news-card__image"
-        src={props.card.urlToImage}
+        src={missingPhoto()}
         alt={props.card.title}
       />
       <div className="news-card__info-container">
         <p className="news-card__date">{props.card.publishedAt}</p>
         <h3 className="news-card__title">{props.card.title}</h3>
         <p className="news-card__text">{props.card.description}</p>
+        <p className="news-card__source">{props.card.source.name}</p>
       </div>
     </li>
   );

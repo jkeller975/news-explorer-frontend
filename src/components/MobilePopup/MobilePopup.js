@@ -32,7 +32,8 @@ const MobilePopup = (props) => {
           props.isPopupOpen ? "mobilepopup_visible" : ""
         }`}
       >
-        <div className="mobilepopup-container">
+        <div className="mobilepopup__container">
+          <i className="mobilepopup__exit" onClick={closePopup}></i>
           <p className={`mobilepopup__logo`}>NewsExplorer</p>
           <img
             src={MenuCloseIcon}

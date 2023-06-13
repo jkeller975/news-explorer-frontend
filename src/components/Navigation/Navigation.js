@@ -8,9 +8,9 @@ function Navigation(props) {
         <NavLink
           to="/saved-news"
           exact={true}
-          activeClassName="navigation__link_active_dark"
+          activeClassName="navigation__link_active-dark"
           className={`navigation__link ${props.navigationLink(
-            "navigation__link_dark"
+            "navigation__link-dark"
           )}`}
         >
           Saved articles
@@ -21,19 +21,19 @@ function Navigation(props) {
     }
   }
   return (
-    <div className="navigation">
+    <nav className="navigation">
       <NavLink
         to="/"
         exact={true}
         activeClassName="navigation__link_active"
         className={`navigation__link ${props.navigationLink(
-          "navigation__link_dark"
+          "navigation__link-dark"
         )}`}
       >
         Home
       </NavLink>
       {savedArticlesLink()}
-    </div>
+    </nav>
   );
 }
 

@@ -2,7 +2,7 @@ import avatar from "../../images/Me.jpg";
 
 function About() {
   return (
-    <div className="about">
+    <section className="about">
       <img className="about__avatar" src={avatar} alt="Author Headshot" />
       <div className="about__description">
         <h2 className="about__title">About the author</h2>
@@ -21,7 +21,7 @@ function About() {
           Node.js, Express.js, MongoDB, and Google Cloud.
         </p>
       </div>
-    </div>
+    </section>
   );
 }
 

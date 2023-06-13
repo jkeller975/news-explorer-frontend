@@ -51,7 +51,7 @@
   transition-delay: 0s;
 }
 
-.mobilepopup-container {
+.mobilepopup__container {
   width: 100%;
   margin-top: 16px;
   display: flex;
@@ -71,6 +71,7 @@
   background-color: transparent;
   outline: none;
   padding-right: 16px;
+  cursor: pointer;
 }
 
 .mobilepopup__exit:hover {

@@ -85,12 +85,10 @@ function SearchForm(props) {
   }
 
   return (
-    <div className="search-container">
-      <div className="search-container__content">
-        <h2 className="search-container__title">
-          What's going on in the world?
-        </h2>
-        <p className="search-container__text">
+    <section className="search__container">
+      <div className="search__content">
+        <h2 className="search__title">What's going on in the world?</h2>
+        <p className="search__text">
           Find the latest news on any topic and save them in your personal
           account.
         </p>
@@ -106,7 +104,7 @@ function SearchForm(props) {
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 

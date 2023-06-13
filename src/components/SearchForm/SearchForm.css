@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-.search-container {
+.search__container {
   background-image: url(../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg);
   background-repeat: no-repeat;
   height: 576px;
@@ -15,7 +15,7 @@ body {
   width: 100%;
 }
 
-.search-container__content {
+.search__content {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -23,7 +23,7 @@ body {
   width: 608px;
 }
 
-.search-container__title {
+.search__title {
   padding-top: 160px;
   padding-bottom: 32px;
   margin: 0;
@@ -34,7 +34,7 @@ body {
   color: #ffffff;
 }
 
-.search-container__text {
+.search__text {
   margin: 0;
   padding-bottom: 88px;
   font-size: 18px;
@@ -86,16 +86,24 @@ body {
   cursor: pointer;
 }
 
+.search-bar__button:hover {
+  background-color: #347eff;
+}
+
+.search-bar__button:active {
+  background-color: #2a65cc;
+}
+
 @media screen and (max-width: 850px) {
-  .search-container {
+  .search__container {
     background-position: center, center;
     height: 400px;
   }
-  .search-container__content {
+  .search__content {
     width: auto;
     padding: 0 160px;
   }
-  .search-container__title {
+  .search__title {
     padding-top: 104px;
     padding-bottom: 16px;
     width: 100%;
@@ -106,7 +114,7 @@ body {
     line-height: 40px;
     color: #ffffff;
   }
-  .search-container__text {
+  .search__text {
     padding-bottom: 48px;
   }
 
@@ -116,13 +124,13 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-  .search-container {
+  .search__container {
     height: 536px;
   }
-  .search-container__content {
+  .search__content {
     padding: 0 16px;
   }
-  .search-container__title {
+  .search__title {
     padding-top: 86px;
     padding-bottom: 16px;
 
@@ -133,7 +141,7 @@ body {
     line-height: 40px;
     color: #ffffff;
   }
-  .search-container__text {
+  .search__text {
     padding-bottom: 122px;
   }
   .search-bar {

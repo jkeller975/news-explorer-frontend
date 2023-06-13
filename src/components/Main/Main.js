@@ -21,7 +21,7 @@ function Main(props) {
   }
 
   return (
-    <div className="main">
+    <main className="main">
       <SearchForm
         setNewsCardListOpen={setNewsCardListOpen}
         searchKeyword={searchKeyword}
@@ -54,7 +54,7 @@ function Main(props) {
         />
       )}
       <About />
-    </div>
+    </main>
   );
 }
 
