@@ -55,6 +55,7 @@ function SearchForm(props) {
           article._id = Math.random().toString();
           newArticles.push(article);
         });
+
         return newArticles;
       })
       .then((articles) => {

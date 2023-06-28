@@ -65,7 +65,7 @@ const MobilePopup = (props) => {
         )}
         {props.isLoggedIn ? (
           <button onClick={handleSignout} className={`mobile__logout`}>
-            {`${(currentUser.name = "Josh")}`}
+            {`${currentUser.name}`}
           </button>
         ) : (
           <button onClick={togglePopup} className="mobile__signin">

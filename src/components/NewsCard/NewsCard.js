@@ -2,12 +2,53 @@ import React, { useState } from "react";
 import Photo from "../../images/no_photo_found.jpg";
 
 const NewsCard = (props) => {
-  const [isSaved, seIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  async function handleDelete() {
+    const cardDeleted = await props.onRemoveArticleClick(props.card);
+    if (cardDeleted) {
+      setIsSaved(false);
+      return;
+    }
+  }
+
+  async function handleArticleSave(card) {
+    if (isSaved) {
+      // props.onRemoveArticleClick(props.card);
+      // setIsSaved(false);
+      handleDelete();
+      return;
+    } else {
+      setIsSaved(true);
+      const savedArticleId = await props.addArticleHandler({
+        keyword: props.card.keyword,
+        title: props.card.title,
+        description: props.card.description,
+        publishedAt: props.card.publishedAt,
+        source: props.card.source.name,
+        url: props.card.url,
+        urlToImage: props.card.urlToImage,
+      });
+
+      if (savedArticleId) {
+        // setIsSavedIcon(true);
+        // setCardId(savedArticleId);
+        // console.log(savedArticleId);
+        return;
+      } else {
+        // setIsSavedIcon(false);
+        return;
+      }
+    }
+  }
 
   function toggleDeleteSave() {
     if (props.isSavedNews && props.isLoggedIn) {
       return (
-        <button className="news-card__delete-button">
+        <button
+          className="news-card__delete-button"
+          onClick={() => props.onRemoveArticleClick(props.card)}
+        >
           <span className="news-card__save-button-label">
             <p>Remove from saved</p>
           </span>
@@ -18,7 +59,10 @@ const NewsCard = (props) => {
         <button
           className={`news-card__save-button
           ${isSaved ? "news-card__save-button_active" : ""}`}
-          onClick={() => seIsSaved(!isSaved)}
+          onClick={() => {
+            setIsSaved(!isSaved);
+            handleArticleSave(props.card);
+          }}
         ></button>
       );
     } else {
