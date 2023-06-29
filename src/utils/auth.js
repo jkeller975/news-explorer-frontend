@@ -1,6 +1,6 @@
 export const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://api.aroundtheus.mooo.com" //Change to new API
+    ? "https://api.news-explorer.us.to"
     : "http://localhost:3001";
 
 function checkResponse(res) {
@@ -14,7 +14,7 @@ export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
-      Accept: "application/json", //is this needed
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email: email, password: password, name: name }),

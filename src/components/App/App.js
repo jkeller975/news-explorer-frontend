@@ -15,7 +15,6 @@ import * as auth from "../../utils/auth";
 import MainApi from "../../utils/MainApi";
 
 function App() {
-  // const [cards] = React.useState(allCards);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isPopupOpen, setPopup] = React.useState(false);
@@ -48,7 +47,6 @@ function App() {
     if (isLoggedIn) {
       Promise.all([MainApi.getCurrentUser(token), MainApi.getArticles()])
         .then(([user, articles]) => {
-          // console.log(articles);
           setCurrentUser(user.data);
           setSavedArticles(articles.data);
         })
@@ -73,7 +71,7 @@ function App() {
     auth.login(email, password).then((data) => {
       if (data.token) {
         localStorage.setItem("jwt", data.token);
-        // setToken(data.token);
+
         setLoggedIn(true);
         setFormPopup(false);
         setToken(data.token);
@@ -86,12 +84,6 @@ function App() {
     setRegisterSuccessPopup(false);
     setFormPopup(true);
   }
-
-  // function registerFail() {
-  //   setRegisterPopup(true);
-  //   setRegisterSuccessPopup(false);
-  //   setFormPopup(true);
-  // }
 
   function searchHandler(keyword) {
     return newsApi.searchArticles(keyword);

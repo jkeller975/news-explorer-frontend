@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.aroundtheus.mooo.com" //Change to new API
+    ? "https://api.news-explorer.us.to"
     : "http://localhost:3001";
 
 class Api {
@@ -34,7 +34,8 @@ class Api {
 
   saveArticle(data, currentUser) {
     const owner = currentUser._id;
-    const { title, description, publishedAt, url, urlToImage } = data;
+
+    const { title, text, date, link, image } = data;
     const source = data.source;
     const keyword =
       data.keyword.charAt(0).toUpperCase() + data.keyword.slice(1);
@@ -48,11 +49,11 @@ class Api {
       body: JSON.stringify({
         keyword,
         title,
-        description,
-        publishedAt,
+        text,
+        date,
         source,
-        url,
-        urlToImage,
+        link,
+        image,
         owner,
       }),
     }).then((res) => {
