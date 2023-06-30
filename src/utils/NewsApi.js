@@ -21,7 +21,7 @@ class NewsApi {
 
   searchArticles(keyword) {
     return fetch(
-      `${this._newsUrl}` +
+      `${this._proxyUrl}` +
         `${keyword}&` +
         `from=${this._lastWeek.toISOString()}&` +
         `to=${this._today.toISOString()}&` +
