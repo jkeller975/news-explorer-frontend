@@ -7,11 +7,11 @@ function About() {
       <div className="about__description">
         <h2 className="about__title">About the author</h2>
         <p className="about__text">
-          Hello, my name is Josh Keller and I am a student at Practicum by
-          Yandex. I currently live in Columbus, OH and graduated The Ohio State
-          University with a B.S. in Chemical Engineering. I have been working in
-          manufacturing for the past 5 years and had an interest in learning
-          programming.
+          Hello, my name is Josh Keller and I am a student at TripleTen
+          (formally Practicum). I currently live in Columbus, OH and graduated
+          The Ohio State University with a B.S. in Chemical Engineering. I have
+          been working in manufacturing for the past 5 years and had an interest
+          in learning programming.
         </p>
         <p className="about__text">
           I started the course at the beginning of 2022 and this is my final
