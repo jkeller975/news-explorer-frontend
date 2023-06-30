@@ -1,7 +1,7 @@
 import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
 
-const NewsCardList = (props) => {
+const NewsCardList = ({ onRemoveArticle, ...props }) => {
   function incrementDisplayedCards() {
     if (props.cards.length > props.visibleCards) {
       props.setShowMore(true);
@@ -24,9 +24,19 @@ const NewsCardList = (props) => {
             key={card._id}
             card={card}
             index={i}
+            addArticleHandler={props.addArticleHandler}
+            onRemoveArticleClick={onRemoveArticleClick}
           />
         ));
     }
+  }
+
+  function onRemoveArticleClick(data) {
+    onRemoveArticle(data);
+  }
+
+  function onSaveArticleClick(article) {
+    props.addArticleHandler(article);
   }
 
   return (
@@ -40,16 +50,28 @@ const NewsCardList = (props) => {
         ) : (
           <div>
             <ul className="news-card-list__container">
-              {props.cards &&
-                props.cards.map((card, i) => (
-                  <NewsCard
-                    isSavedNews={props.isSavedNews}
-                    isLoggedIn={props.isLoggedIn}
-                    key={card._id}
-                    card={card}
-                    index={i}
-                  />
-                ))}
+              {props.savedArticles
+                ? props.savedArticles.map((card, i) => (
+                    <NewsCard
+                      isSavedNews={props.isSavedNews}
+                      isLoggedIn={props.isLoggedIn}
+                      key={card._id}
+                      card={card}
+                      index={i}
+                      onRemoveArticleClick={onRemoveArticleClick}
+                      onSaveArticleClick={onSaveArticleClick}
+                    />
+                  ))
+                : props.cards.map((card, i) => (
+                    <NewsCard
+                      isSavedNews={props.isSavedNews}
+                      isLoggedIn={props.isLoggedIn}
+                      key={card._id}
+                      card={card}
+                      index={i}
+                      onRemoveArticleClick={onRemoveArticleClick}
+                    />
+                  ))}
             </ul>
           </div>
         )}

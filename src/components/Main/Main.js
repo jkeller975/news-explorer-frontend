@@ -43,7 +43,7 @@ function Main(props) {
       {searchError && <ErrorMessage />}
       {isNewsCardListOpen && resultCardLength > 0 && (
         <NewsCardList
-          cards={cards}
+          articles={props.savedArticles}
           isSavedNews={false}
           isLoggedIn={props.isLoggedIn}
           resultCardLength={resultCardLength}
@@ -51,6 +51,9 @@ function Main(props) {
           setVisibleCards={setVisibleCards}
           setShowMore={setShowMore}
           showMore={showMore}
+          cards={cards}
+          addArticleHandler={props.addArticleHandler}
+          onRemoveArticle={props.handleRemoveArticle}
         />
       )}
       <About />

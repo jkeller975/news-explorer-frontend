@@ -11,12 +11,12 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
 import newsApi from "../../utils/NewsApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { allCards } from "../data/data";
+import * as auth from "../../utils/auth";
+import MainApi from "../../utils/MainApi";
 
 function App() {
-  const [cards] = React.useState(allCards);
-  const [currentUser] = React.useState({});
-  const [isLoggedIn, setLoggedIn] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState({});
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isPopupOpen, setPopup] = React.useState(false);
   const [isFormPopupOpen, setFormPopup] = React.useState(false);
   const [isMobilePopupOpen, setMobilePopup] = React.useState(false);
@@ -25,6 +25,59 @@ function App() {
     React.useState(false);
   const [isRegisterSuccess, setRegisterSuccess] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(false);
+  const [token, setToken] = React.useState(localStorage.getItem("jwt"));
+  const [savedArticles, setSavedArticles] = React.useState([]);
+  const [recentArticles, setRecentArticles] = React.useState([]);
+
+  React.useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth.checkToken(jwt).then((res) => {
+        if (res) {
+          setLoggedIn(true);
+        } else {
+          localStorage.removeItem("jwt");
+        }
+      });
+    }
+  });
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([MainApi.getCurrentUser(token), MainApi.getArticles()])
+        .then(([user, articles]) => {
+          setCurrentUser(user.data);
+          setSavedArticles(articles.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [token, isLoggedIn]);
+
+  function onRegisterSubmit(email, password, name) {
+    auth.register(email, password, name).then((res) => {
+      if (res) {
+        setIsRegistered(true);
+        setRegisterSuccessPopup(true);
+        setFormPopup(false);
+        setRegisterSuccess(true);
+      } else {
+        console.log("ERROR");
+      }
+    });
+  }
+
+  function onLoginSubmit(email, password) {
+    auth.login(email, password).then((data) => {
+      if (data.token) {
+        localStorage.setItem("jwt", data.token);
+
+        setLoggedIn(true);
+        setFormPopup(false);
+        setToken(data.token);
+      }
+    });
+  }
 
   function registerSuccess() {
     setRegisterPopup(false);
@@ -32,14 +85,48 @@ function App() {
     setFormPopup(true);
   }
 
-  // function registerFail() {
-  //   setRegisterPopup(true);
-  //   setRegisterSuccessPopup(false);
-  //   setFormPopup(true);
-  // }
-
   function searchHandler(keyword) {
-    return newsApi.searchArticles(keyword);
+    return newsApi.searchArticles(keyword).catch((err) => console.log(err));
+  }
+
+  function addArticleHandler(article) {
+    if (article) {
+      return MainApi.saveArticle(article, currentUser)
+        .then(() => {
+          setRecentArticles(savedArticles);
+        })
+        .then(() => {
+          MainApi.getArticles().then((articles) => {
+            setSavedArticles(articles.data);
+          });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      throw new Error("No article added");
+    }
+  }
+
+  function undoSaveArticle(data) {
+    const newArticle = savedArticles.pop();
+    const newArticleId = newArticle._id;
+    MainApi.removeArticle(newArticleId, localStorage.getItem("jwt"))
+      .then(() => {
+        MainApi.getArticles().then((articles) => {
+          setSavedArticles(articles.data);
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleRemoveArticle(data) {
+    const articleId = data._id;
+    MainApi.removeArticle(articleId, localStorage.getItem("jwt"))
+      .then(() => {
+        MainApi.getArticles().then((articles) => {
+          setSavedArticles(articles.data);
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -61,7 +148,15 @@ function App() {
               setMenuOpen={setMenuOpen}
               isSavedNews={false}
             />
-            <Main isLoggedIn={isLoggedIn} searchHandler={searchHandler} />
+            <Main
+              isLoggedIn={isLoggedIn}
+              searchHandler={searchHandler}
+              savedArticles={savedArticles}
+              setSavedArticles={setSavedArticles}
+              cards={savedArticles}
+              addArticleHandler={addArticleHandler}
+              handleRemoveArticle={undoSaveArticle}
+            />
             <Footer />
           </Route>
           <ProtectedRoute exact path="/saved-news" loggedIn={isLoggedIn}>
@@ -79,8 +174,13 @@ function App() {
               setMenuOpen={setMenuOpen}
               isSavedNews={true}
             />
-            <SavedNewsHeader isLoggedIn={isLoggedIn} cards={cards} />
-            <SavedNews isLoggedIn={isLoggedIn} cards={cards} />
+            <SavedNewsHeader isLoggedIn={isLoggedIn} cards={savedArticles} />
+            <SavedNews
+              isLoggedIn={isLoggedIn}
+              savedArticles={savedArticles}
+              setSavedArticles={setSavedArticles}
+              handleRemoveArticle={handleRemoveArticle}
+            />
             <Footer />
           </ProtectedRoute>
         </Switch>
@@ -102,6 +202,8 @@ function App() {
               setLoggedIn={setLoggedIn}
               isRegisterSuccess={isRegisterSuccess}
               setRegisterSuccess={setRegisterSuccess}
+              onRegisterSubmit={onRegisterSubmit}
+              onLoginSubmit={onLoginSubmit}
             />
           </Popup>
         ) : (

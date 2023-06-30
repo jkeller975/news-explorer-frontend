@@ -4,8 +4,10 @@ import MenuWhiteIcon from "../../images/menu_white.svg";
 import MenuBlackIcon from "../../images/menu_black.svg";
 import MenuCloseIcon from "../../images/menu_close.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom";
 
 function Header(props) {
+  const history = useHistory();
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const [menuIcon, setMenuIcon] = React.useState();
 
@@ -36,6 +38,8 @@ function Header(props) {
   function handleSignout() {
     props.setLoggedIn(false);
     setIsNavOpen(false);
+    localStorage.removeItem("jwt");
+    history.push("/");
   }
 
   function menuClick() {
@@ -80,7 +84,7 @@ function Header(props) {
               "header__logout_theme_dark"
             )}`}
           >
-            {`${(currentUser.name = "Josh")}`}
+            {`${currentUser.name}`}
           </button>
         ) : (
           <button onClick={togglePopup} className="header__signin">

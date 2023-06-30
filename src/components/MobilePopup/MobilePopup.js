@@ -1,9 +1,10 @@
 import React from "react";
 import MenuCloseIcon from "../../images/menu_close.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const MobilePopup = (props) => {
+  const history = useHistory();
   function closePopup() {
     props.setPopup(false);
     props.setFormPopup(false);
@@ -12,6 +13,8 @@ const MobilePopup = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
   function handleSignout() {
     props.setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    history.push("/");
   }
 
   function togglePopup() {
@@ -65,7 +68,7 @@ const MobilePopup = (props) => {
         )}
         {props.isLoggedIn ? (
           <button onClick={handleSignout} className={`mobile__logout`}>
-            {`${(currentUser.name = "Josh")}`}
+            {`${currentUser.name}`}
           </button>
         ) : (
           <button onClick={togglePopup} className="mobile__signin">

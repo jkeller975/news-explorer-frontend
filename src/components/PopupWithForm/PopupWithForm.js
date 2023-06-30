@@ -9,20 +9,16 @@ const PopupWithForm = (props) => {
 
   function handleRegisterSubmit(e) {
     e.preventDefault();
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
-    nameRef.current.value = "";
-    props.setRegisterSuccessPopup(true);
-    props.setFormPopup(false);
-    props.setRegisterSuccess(true);
+    props.onRegisterSubmit(
+      emailRef.current.value,
+      passwordRef.current.value,
+      nameRef.current.value
+    );
   }
 
   function handleSigninSubmit(e) {
     e.preventDefault();
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
-    props.setLoggedIn(true);
-    closePopup();
+    props.onLoginSubmit(emailRef.current.value, passwordRef.current.value);
   }
 
   function validateInputs(email, password, username = null) {
