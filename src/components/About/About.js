@@ -8,7 +8,7 @@ function About() {
         <h2 className="about__title">About the author</h2>
         <p className="about__text">
           Hello, my name is Josh Keller and I am a student at TripleTen
-          (formally Practicum). I currently live in Columbus, OH and graduated
+          (formerly Practicum). I currently live in Columbus, OH and graduated
           The Ohio State University with a B.S. in Chemical Engineering. I have
           been working in manufacturing for the past 5 years and had an interest
           in learning programming.
