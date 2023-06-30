@@ -86,7 +86,7 @@ function App() {
   }
 
   function searchHandler(keyword) {
-    return newsApi.searchArticles(keyword);
+    return newsApi.searchArticles(keyword).catch((err) => console.log(err));
   }
 
   function addArticleHandler(article) {
@@ -99,7 +99,8 @@ function App() {
           MainApi.getArticles().then((articles) => {
             setSavedArticles(articles.data);
           });
-        });
+        })
+        .catch((err) => console.log(err));
     } else {
       throw new Error("No article added");
     }
