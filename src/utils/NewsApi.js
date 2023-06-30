@@ -1,7 +1,7 @@
 import {
   PAGE_SIZE,
   API_KEY,
-  NEWS_URL,
+  // NEWS_URL,
   PROXY_URL,
   SEARCH_INTERVAL,
 } from "./constants";
@@ -12,7 +12,7 @@ class NewsApi {
     this._apiKey = options.apiKey;
     this._today = options.today;
     this._lastWeek = options.lastWeek;
-    this._newsUrl = options.newsUrl;
+    // this._newsUrl = options.newsUrl;
     this._practicumUrl = options.practicumUrl;
     this._pageSize = options.pageSize;
     this._endpoint = options.endpoint;
@@ -45,7 +45,7 @@ class NewsApi {
 }
 
 const newsApi = new NewsApi({
-  newsUrl: NEWS_URL,
+  // newsUrl: NEWS_URL,
   proxyUrl: PROXY_URL,
   apiKey: API_KEY,
   today: new Date(),
