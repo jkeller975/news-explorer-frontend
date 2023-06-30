@@ -1,6 +1,6 @@
 import React from "react";
 import githubIcon from "../../images/Github_Logo.svg";
-import fbIcon from "../../images/FB_Logo.svg";
+import fbIcon from "../../images/LinkedIn_Logo.svg";
 
 function Footer() {
   return (
@@ -10,16 +10,16 @@ function Footer() {
       </p>
       <nav className="footer__menu">
         <div className="footer__links">
-          <a href="https://practicum.com" className="footer__menu-link">
+          <a href="https://news-explorer.us.to" className="footer__menu-link">
             Home
           </a>
           <a
-            href="https://practicum.com"
+            href="https://tripleten.com/"
             rel="noreferrer"
             target="_blank"
             className="footer__menu-link"
           >
-            Practicum
+            TripleTen
           </a>
         </div>
         <div className="footer__logos">
@@ -35,7 +35,7 @@ function Footer() {
             />
           </a>
           <a
-            href="https://www.facebook.com/josh.keller.3994"
+            href="https://www.linkedin.com/in/joshuaskeller/"
             rel="noreferrer"
             target="_blank"
           >
